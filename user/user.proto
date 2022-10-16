@@ -6,6 +6,7 @@ option go_package = "github.com/gilwong00/go-user-grpc;go_user_grpc";
 
 service UserService {
 	rpc CreateNewUser (NewUser) returns (User) {}
+	rpc GetUsers (GetUsersParams) returns (UserList) {}
 }
 
 message NewUser {
@@ -19,5 +20,8 @@ message User {
 	int32 id = 3;
 }
 
-// command to create pb files
-// protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative user/user.proto
+message GetUsersParams {}
+
+message UserList {
+	repeated User users = 1;
+}
